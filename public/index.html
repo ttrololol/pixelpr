@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>PIXELPR - Anonymous Chat</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <div class="logo">
+        <span class="logo-pixel">PIXEL</span><span class="logo-pr">PR</span>
+      </div>
+      <div class="user-info">
+        <span id="nickname">Connecting…</span>
+      </div>
+    </header>
+
+    <main class="chat-container">
+      <div id="messages" class="messages"></div>
+    </main>
+
+    <footer class="input-area">
+      <form id="message-form" enctype="multipart/form-data" autocomplete="off">
+        <input
+          id="message-input"
+          type="text"
+          autocomplete="off"
+          placeholder="Type your message anonymously…"
+          maxlength="400"
+        />
+        <button id="attach-btn" type="button" class="attach-btn" title="Attach file">📎</button>
+        <input id="file-input" type="file" accept="image/*,video/*,.pdf,.zip,.txt" class="hidden" />
+        <!-- single selector: choose view and where to send (Public or one of your groups) -->
+        <select id="view-select" class="view-select" title="View">
+          <option value="">Public</option>
+        </select>
+        <button type="submit">Send</button>
+      </form>
+      <div class="footer-meta">
+        <span id="user-count" class="user-count">0 users</span>
+        <div class="mode-buttons">
+          <button id="mode-global" class="mode-btn mode-active" type="button">Global</button>
+          <button id="mode-groups" class="mode-btn" type="button">Groups</button>
+        </div>
+        <button id="groups-toggle" class="groups-toggle" type="button">Groups</button>
+      </div>
+      <div id="groups-panel" class="groups-panel hidden">
+        <div id="view-banner" class="view-banner hidden"></div>
+        <form id="create-group-form" class="create-group-form">
+          <input id="group-name-input" placeholder="Create group (e.g. bookclub)" maxlength="30" />
+          <button type="submit">Create</button>
+        </form>
+        <div id="groups-list" class="groups-list"></div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="client.js"></script>
+
+  <button id="voice-btn" type="button" class="voice-btn">
+  🎤
+</button>
+<div id="recording-bar" class="recording-bar hidden">
+  <div class="wave"></div>
+  <span id="recording-timer">0:00</span>
+</div>
+</body>
+</html>
